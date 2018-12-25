@@ -3,7 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2050
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoVoyage_AHK", "BoVoyage_AHK\BoVoyage_AHK.csproj", "{9181DAA8-999C-463D-A152-B94DFB872416}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoVoyage_UIL", "BoVoyage_AHK\BoVoyage_UIL.csproj", "{9181DAA8-999C-463D-A152-B94DFB872416}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoVoyage_DAL", "BoVoyage_DAL\BoVoyage_DAL.csproj", "{F4A11A5F-A3FF-4659-9116-23B2107564F3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoVoyage_BOL", "BoVoyage_BOL\BoVoyage_BOL.csproj", "{BC006AD7-C41E-492E-9232-19EC08AC4821}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoVoyage_DTO", "BoVoyage_DTO\BoVoyage_DTO.csproj", "{7AF3AFFA-07CA-4C3E-B335-3526A0CE0046}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebService_Bank", "WebApi_Bank\WebService_Bank.csproj", "{A92AC578-AB71-4F69-9581-448D982CF94B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceFournisseur", "ServiceFournisseur\ServiceFournisseur.csproj", "{5ABA5108-46EA-4CCF-B28C-1C63960D0210}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +25,26 @@ Global
 		{9181DAA8-999C-463D-A152-B94DFB872416}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9181DAA8-999C-463D-A152-B94DFB872416}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9181DAA8-999C-463D-A152-B94DFB872416}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4A11A5F-A3FF-4659-9116-23B2107564F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4A11A5F-A3FF-4659-9116-23B2107564F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4A11A5F-A3FF-4659-9116-23B2107564F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4A11A5F-A3FF-4659-9116-23B2107564F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC006AD7-C41E-492E-9232-19EC08AC4821}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC006AD7-C41E-492E-9232-19EC08AC4821}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC006AD7-C41E-492E-9232-19EC08AC4821}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC006AD7-C41E-492E-9232-19EC08AC4821}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AF3AFFA-07CA-4C3E-B335-3526A0CE0046}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AF3AFFA-07CA-4C3E-B335-3526A0CE0046}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AF3AFFA-07CA-4C3E-B335-3526A0CE0046}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AF3AFFA-07CA-4C3E-B335-3526A0CE0046}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A92AC578-AB71-4F69-9581-448D982CF94B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A92AC578-AB71-4F69-9581-448D982CF94B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A92AC578-AB71-4F69-9581-448D982CF94B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A92AC578-AB71-4F69-9581-448D982CF94B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5ABA5108-46EA-4CCF-B28C-1C63960D0210}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5ABA5108-46EA-4CCF-B28C-1C63960D0210}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5ABA5108-46EA-4CCF-B28C-1C63960D0210}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5ABA5108-46EA-4CCF-B28C-1C63960D0210}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
