@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8f3314f5f9c54a36bf14a4bfe0956046" Name="Diagram1">
+        <EntityTypeShape EntityType="BVModel.CarteBancaire" Width="1.5" PointX="3.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="BVModel.Client" Width="1.5" PointX="3.5" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="BVModel.Continent" Width="1.5" PointX="1.5" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BVModel.Dossier" Width="1.5" PointX="1" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BVModel.MarketingCampagne" Width="1.5" PointX="8.125" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BVModel.MarketingClient" Width="1.5" PointX="6" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BVModel.Pay" Width="1.5" PointX="1.5" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BVModel.Region" Width="1.5" PointX="1.5" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BVModel.Voyage" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BVModel.Voyageur" Width="1.5" PointX="5.25" PointY="7.625" IsExpanded="true" />
+        <AssociationConnector Association="BVModel.FK_Dossier_CarteBancaire" ManuallyRouted="false" />
+        <AssociationConnector Association="BVModel.FK_Dossier_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="BVModel.FK_MarketingClient_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="BVModel.FK_Pays_Continent" ManuallyRouted="false" />
+        <AssociationConnector Association="BVModel.FK_Dossier_Voyage" ManuallyRouted="false" />
+        <AssociationConnector Association="BVModel.FK_Voyageur_Dossier" ManuallyRouted="false" />
+        <AssociationConnector Association="BVModel.FK_MarketingClient_MarketingCampagne" ManuallyRouted="false" />
+        <AssociationConnector Association="BVModel.FK_Region_Pays" ManuallyRouted="false" />
+        <AssociationConnector Association="BVModel.FK_Voyage_Region" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

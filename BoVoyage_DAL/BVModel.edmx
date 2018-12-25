@@ -1,0 +1,848 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BVModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CarteBancaire">
+          <Key>
+            <PropertyRef Name="IdCB" />
+          </Key>
+          <Property Name="IdCB" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nom" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NumCb" Type="char" MaxLength="16" Nullable="false" />
+          <Property Name="DateExp" Type="date" Nullable="false" />
+          <Property Name="CCV" Type="char" MaxLength="3" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="IdCli" />
+          </Key>
+          <Property Name="IdCli" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Civilite" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="NomClient" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="PrenomClient" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="DateClient" Type="date" Nullable="false" />
+          <Property Name="EmailClient" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Adresse" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CodePostale" Type="bigint" Nullable="false" />
+          <Property Name="Ville" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Telephone" Type="char" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Continent">
+          <Key>
+            <PropertyRef Name="IdC" />
+          </Key>
+          <Property Name="IdC" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NomC" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Dossier">
+          <Key>
+            <PropertyRef Name="IdD" />
+          </Key>
+          <Property Name="IdD" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NumDossier" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdVoyage" Type="bigint" Nullable="false" />
+          <Property Name="NbVoy" Type="int" Nullable="false" />
+          <Property Name="IdClient" Type="bigint" Nullable="false" />
+          <Property Name="IdCb" Type="bigint" Nullable="false" />
+          <Property Name="NumCb" Type="char" MaxLength="16" Nullable="false" />
+          <Property Name="Montant" Type="float" />
+          <Property Name="AssuranceA" Type="bit" />
+          <Property Name="AssuranceOption" Type="bit" />
+          <Property Name="Statut" Type="nvarchar" MaxLength="50" />
+          <Property Name="Commentaire" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="MarketingCampagne">
+          <Key>
+            <PropertyRef Name="IdMC" />
+          </Key>
+          <Property Name="IdMC" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Libelle" Type="nvarchar" MaxLength="50" />
+          <Property Name="DescriptionC" Type="nvarchar(max)" />
+          <Property Name="DateLimiteC" Type="date" />
+        </EntityType>
+        <EntityType Name="MarketingClient">
+          <Key>
+            <PropertyRef Name="IdMCli" />
+          </Key>
+          <Property Name="IdMCli" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdClient" Type="bigint" Nullable="false" />
+          <Property Name="IdCampagne" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pays">
+          <Key>
+            <PropertyRef Name="IdP" />
+          </Key>
+          <Property Name="IdP" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NomP" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdContinent" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Region">
+          <Key>
+            <PropertyRef Name="IdR" />
+          </Key>
+          <Property Name="IdR" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NomR" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdPays" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Voyage">
+          <Key>
+            <PropertyRef Name="IdV" />
+          </Key>
+          <Property Name="IdV" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NomV" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdRegion" Type="bigint" Nullable="false" />
+          <Property Name="TypeV" Type="nvarchar" MaxLength="50" />
+          <Property Name="DescriptionV" Type="nvarchar(max)" />
+          <Property Name="Prix" Type="float" />
+          <Property Name="DateA" Type="date" />
+          <Property Name="DateR" Type="date" />
+          <Property Name="Dispo" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Voyageur">
+          <Key>
+            <PropertyRef Name="IdVoy" />
+          </Key>
+          <Property Name="IdVoy" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Civilite" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="NomVoy" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="PrenomVoy" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="DateVoy" Type="date" Nullable="false" />
+          <Property Name="IdDossier" Type="bigint" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Dossier_CarteBancaire">
+          <End Role="CarteBancaire" Type="Self.CarteBancaire" Multiplicity="1" />
+          <End Role="Dossier" Type="Self.Dossier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarteBancaire">
+              <PropertyRef Name="IdCB" />
+            </Principal>
+            <Dependent Role="Dossier">
+              <PropertyRef Name="IdCb" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dossier_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Dossier" Type="Self.Dossier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="IdCli" />
+            </Principal>
+            <Dependent Role="Dossier">
+              <PropertyRef Name="IdClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dossier_Voyage">
+          <End Role="Voyage" Type="Self.Voyage" Multiplicity="1" />
+          <End Role="Dossier" Type="Self.Dossier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Voyage">
+              <PropertyRef Name="IdV" />
+            </Principal>
+            <Dependent Role="Dossier">
+              <PropertyRef Name="IdVoyage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MarketingClient_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="MarketingClient" Type="Self.MarketingClient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="IdCli" />
+            </Principal>
+            <Dependent Role="MarketingClient">
+              <PropertyRef Name="IdClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MarketingClient_MarketingCampagne">
+          <End Role="MarketingCampagne" Type="Self.MarketingCampagne" Multiplicity="1" />
+          <End Role="MarketingClient" Type="Self.MarketingClient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MarketingCampagne">
+              <PropertyRef Name="IdMC" />
+            </Principal>
+            <Dependent Role="MarketingClient">
+              <PropertyRef Name="IdCampagne" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pays_Continent">
+          <End Role="Continent" Type="Self.Continent" Multiplicity="1" />
+          <End Role="Pays" Type="Self.Pays" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Continent">
+              <PropertyRef Name="IdC" />
+            </Principal>
+            <Dependent Role="Pays">
+              <PropertyRef Name="IdContinent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Region_Pays">
+          <End Role="Pays" Type="Self.Pays" Multiplicity="1" />
+          <End Role="Region" Type="Self.Region" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pays">
+              <PropertyRef Name="IdP" />
+            </Principal>
+            <Dependent Role="Region">
+              <PropertyRef Name="IdPays" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Voyage_Region">
+          <End Role="Region" Type="Self.Region" Multiplicity="1" />
+          <End Role="Voyage" Type="Self.Voyage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="IdR" />
+            </Principal>
+            <Dependent Role="Voyage">
+              <PropertyRef Name="IdRegion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Voyageur_Dossier">
+          <End Role="Dossier" Type="Self.Dossier" Multiplicity="1" />
+          <End Role="Voyageur" Type="Self.Voyageur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dossier">
+              <PropertyRef Name="IdD" />
+            </Principal>
+            <Dependent Role="Voyageur">
+              <PropertyRef Name="IdDossier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="EnregistreCB" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nom" Type="nvarchar" Mode="In" />
+          <Parameter Name="NumCb" Type="char" Mode="In" />
+          <Parameter Name="DateExp" Type="date" Mode="In" />
+          <Parameter Name="CCV" Type="char" Mode="In" />
+        </Function>
+        <Function Name="EnregistreClient" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Civilite" Type="nvarchar" Mode="In" />
+          <Parameter Name="NomClient" Type="nvarchar" Mode="In" />
+          <Parameter Name="PrenomClient" Type="nvarchar" Mode="In" />
+          <Parameter Name="DateClient" Type="date" Mode="In" />
+          <Parameter Name="EmailClient" Type="nvarchar" Mode="In" />
+          <Parameter Name="Adresse" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="CodePostale" Type="bigint" Mode="In" />
+          <Parameter Name="Ville" Type="nvarchar" Mode="In" />
+          <Parameter Name="Telephone" Type="char" Mode="In" />
+        </Function>
+        <Function Name="EnregistreDossier" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NumDossier" Type="nvarchar" Mode="In" />
+          <Parameter Name="IdV" Type="bigint" Mode="In" />
+          <Parameter Name="NbVoy" Type="int" Mode="In" />
+          <Parameter Name="NumCb" Type="char" Mode="In" />
+          <Parameter Name="AssuranceA" Type="bit" Mode="In" />
+          <Parameter Name="AssuranceOption" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="GetListeContinent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetListePays" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="choixC" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetListeRegion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="choixP" Type="int" Mode="In" />
+          <Parameter Name="choixC" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetListeVoyage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="choixC" Type="int" Mode="In" />
+          <Parameter Name="choixP" Type="int" Mode="In" />
+          <Parameter Name="choixR" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="BVModelStoreContainer">
+          <EntitySet Name="CarteBancaire" EntityType="Self.CarteBancaire" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Continent" EntityType="Self.Continent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dossier" EntityType="Self.Dossier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MarketingCampagne" EntityType="Self.MarketingCampagne" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MarketingClient" EntityType="Self.MarketingClient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pays" EntityType="Self.Pays" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Region" EntityType="Self.Region" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Voyage" EntityType="Self.Voyage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Voyageur" EntityType="Self.Voyageur" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Dossier_CarteBancaire" Association="Self.FK_Dossier_CarteBancaire">
+            <End Role="CarteBancaire" EntitySet="CarteBancaire" />
+            <End Role="Dossier" EntitySet="Dossier" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dossier_Client" Association="Self.FK_Dossier_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Dossier" EntitySet="Dossier" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dossier_Voyage" Association="Self.FK_Dossier_Voyage">
+            <End Role="Voyage" EntitySet="Voyage" />
+            <End Role="Dossier" EntitySet="Dossier" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MarketingClient_Client" Association="Self.FK_MarketingClient_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="MarketingClient" EntitySet="MarketingClient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MarketingClient_MarketingCampagne" Association="Self.FK_MarketingClient_MarketingCampagne">
+            <End Role="MarketingCampagne" EntitySet="MarketingCampagne" />
+            <End Role="MarketingClient" EntitySet="MarketingClient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pays_Continent" Association="Self.FK_Pays_Continent">
+            <End Role="Continent" EntitySet="Continent" />
+            <End Role="Pays" EntitySet="Pays" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Region_Pays" Association="Self.FK_Region_Pays">
+            <End Role="Pays" EntitySet="Pays" />
+            <End Role="Region" EntitySet="Region" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Voyage_Region" Association="Self.FK_Voyage_Region">
+            <End Role="Region" EntitySet="Region" />
+            <End Role="Voyage" EntitySet="Voyage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Voyageur_Dossier" Association="Self.FK_Voyageur_Dossier">
+            <End Role="Dossier" EntitySet="Dossier" />
+            <End Role="Voyageur" EntitySet="Voyageur" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BVModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CarteBancaire">
+          <Key>
+            <PropertyRef Name="IdCB" />
+          </Key>
+          <Property Name="IdCB" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NumCb" Type="String" MaxLength="16" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="DateExp" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CCV" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Dossiers" Relationship="Self.FK_Dossier_CarteBancaire" FromRole="CarteBancaire" ToRole="Dossier" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="IdCli" />
+          </Key>
+          <Property Name="IdCli" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Civilite" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NomClient" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PrenomClient" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateClient" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EmailClient" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Adresse" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CodePostale" Type="Int64" Nullable="false" />
+          <Property Name="Ville" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Telephone" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Dossiers" Relationship="Self.FK_Dossier_Client" FromRole="Client" ToRole="Dossier" />
+          <NavigationProperty Name="MarketingClients" Relationship="Self.FK_MarketingClient_Client" FromRole="Client" ToRole="MarketingClient" />
+        </EntityType>
+        <EntityType Name="Continent">
+          <Key>
+            <PropertyRef Name="IdC" />
+          </Key>
+          <Property Name="IdC" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Pays" Relationship="Self.FK_Pays_Continent" FromRole="Continent" ToRole="Pays" />
+        </EntityType>
+        <EntityType Name="Dossier">
+          <Key>
+            <PropertyRef Name="IdD" />
+          </Key>
+          <Property Name="IdD" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumDossier" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdVoyage" Type="Int64" Nullable="false" />
+          <Property Name="NbVoy" Type="Int32" Nullable="false" />
+          <Property Name="IdClient" Type="Int64" Nullable="false" />
+          <Property Name="IdCb" Type="Int64" Nullable="false" />
+          <Property Name="NumCb" Type="String" MaxLength="16" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Montant" Type="Double" />
+          <Property Name="AssuranceA" Type="Boolean" />
+          <Property Name="AssuranceOption" Type="Boolean" />
+          <Property Name="Statut" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Commentaire" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CarteBancaire" Relationship="Self.FK_Dossier_CarteBancaire" FromRole="Dossier" ToRole="CarteBancaire" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Dossier_Client" FromRole="Dossier" ToRole="Client" />
+          <NavigationProperty Name="Voyage" Relationship="Self.FK_Dossier_Voyage" FromRole="Dossier" ToRole="Voyage" />
+          <NavigationProperty Name="Voyageurs" Relationship="Self.FK_Voyageur_Dossier" FromRole="Dossier" ToRole="Voyageur" />
+        </EntityType>
+        <EntityType Name="MarketingCampagne">
+          <Key>
+            <PropertyRef Name="IdMC" />
+          </Key>
+          <Property Name="IdMC" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Libelle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DescriptionC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateLimiteC" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="MarketingClients" Relationship="Self.FK_MarketingClient_MarketingCampagne" FromRole="MarketingCampagne" ToRole="MarketingClient" />
+        </EntityType>
+        <EntityType Name="MarketingClient">
+          <Key>
+            <PropertyRef Name="IdMCli" />
+          </Key>
+          <Property Name="IdMCli" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdClient" Type="Int64" Nullable="false" />
+          <Property Name="IdCampagne" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_MarketingClient_Client" FromRole="MarketingClient" ToRole="Client" />
+          <NavigationProperty Name="MarketingCampagne" Relationship="Self.FK_MarketingClient_MarketingCampagne" FromRole="MarketingClient" ToRole="MarketingCampagne" />
+        </EntityType>
+        <EntityType Name="Pay">
+          <Key>
+            <PropertyRef Name="IdP" />
+          </Key>
+          <Property Name="IdP" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdContinent" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Continent" Relationship="Self.FK_Pays_Continent" FromRole="Pays" ToRole="Continent" />
+          <NavigationProperty Name="Regions" Relationship="Self.FK_Region_Pays" FromRole="Pays" ToRole="Region" />
+        </EntityType>
+        <EntityType Name="Region">
+          <Key>
+            <PropertyRef Name="IdR" />
+          </Key>
+          <Property Name="IdR" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomR" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdPays" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Pay" Relationship="Self.FK_Region_Pays" FromRole="Region" ToRole="Pays" />
+          <NavigationProperty Name="Voyages" Relationship="Self.FK_Voyage_Region" FromRole="Region" ToRole="Voyage" />
+        </EntityType>
+        <EntityType Name="Voyage">
+          <Key>
+            <PropertyRef Name="IdV" />
+          </Key>
+          <Property Name="IdV" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdRegion" Type="Int64" Nullable="false" />
+          <Property Name="TypeV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DescriptionV" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Prix" Type="Double" />
+          <Property Name="DateA" Type="DateTime" Precision="0" />
+          <Property Name="DateR" Type="DateTime" Precision="0" />
+          <Property Name="Dispo" Type="Int64" />
+          <NavigationProperty Name="Dossiers" Relationship="Self.FK_Dossier_Voyage" FromRole="Voyage" ToRole="Dossier" />
+          <NavigationProperty Name="Region" Relationship="Self.FK_Voyage_Region" FromRole="Voyage" ToRole="Region" />
+        </EntityType>
+        <EntityType Name="Voyageur">
+          <Key>
+            <PropertyRef Name="IdVoy" />
+          </Key>
+          <Property Name="IdVoy" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Civilite" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NomVoy" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PrenomVoy" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateVoy" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IdDossier" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Dossier" Relationship="Self.FK_Voyageur_Dossier" FromRole="Voyageur" ToRole="Dossier" />
+        </EntityType>
+        <Association Name="FK_Dossier_CarteBancaire">
+          <End Role="CarteBancaire" Type="Self.CarteBancaire" Multiplicity="1" />
+          <End Role="Dossier" Type="Self.Dossier" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="CarteBancaire">
+              <PropertyRef Name="IdCB" />
+            </Principal>
+            <Dependent Role="Dossier">
+              <PropertyRef Name="IdCb" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dossier_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Dossier" Type="Self.Dossier" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="IdCli" />
+            </Principal>
+            <Dependent Role="Dossier">
+              <PropertyRef Name="IdClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MarketingClient_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="MarketingClient" Type="Self.MarketingClient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="IdCli" />
+            </Principal>
+            <Dependent Role="MarketingClient">
+              <PropertyRef Name="IdClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pays_Continent">
+          <End Role="Continent" Type="Self.Continent" Multiplicity="1" />
+          <End Role="Pays" Type="Self.Pay" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Continent">
+              <PropertyRef Name="IdC" />
+            </Principal>
+            <Dependent Role="Pays">
+              <PropertyRef Name="IdContinent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dossier_Voyage">
+          <End Role="Voyage" Type="Self.Voyage" Multiplicity="1" />
+          <End Role="Dossier" Type="Self.Dossier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Voyage">
+              <PropertyRef Name="IdV" />
+            </Principal>
+            <Dependent Role="Dossier">
+              <PropertyRef Name="IdVoyage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Voyageur_Dossier">
+          <End Role="Dossier" Type="Self.Dossier" Multiplicity="1" />
+          <End Role="Voyageur" Type="Self.Voyageur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dossier">
+              <PropertyRef Name="IdD" />
+            </Principal>
+            <Dependent Role="Voyageur">
+              <PropertyRef Name="IdDossier" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MarketingClient_MarketingCampagne">
+          <End Role="MarketingCampagne" Type="Self.MarketingCampagne" Multiplicity="1" />
+          <End Role="MarketingClient" Type="Self.MarketingClient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MarketingCampagne">
+              <PropertyRef Name="IdMC" />
+            </Principal>
+            <Dependent Role="MarketingClient">
+              <PropertyRef Name="IdCampagne" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Region_Pays">
+          <End Role="Pays" Type="Self.Pay" Multiplicity="1" />
+          <End Role="Region" Type="Self.Region" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pays">
+              <PropertyRef Name="IdP" />
+            </Principal>
+            <Dependent Role="Region">
+              <PropertyRef Name="IdPays" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Voyage_Region">
+          <End Role="Region" Type="Self.Region" Multiplicity="1" />
+          <End Role="Voyage" Type="Self.Voyage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="IdR" />
+            </Principal>
+            <Dependent Role="Voyage">
+              <PropertyRef Name="IdRegion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BVContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CarteBancaires" EntityType="Self.CarteBancaire" />
+          <EntitySet Name="Clients" EntityType="Self.Client" />
+          <EntitySet Name="Continents" EntityType="Self.Continent" />
+          <EntitySet Name="Dossiers" EntityType="Self.Dossier" />
+          <EntitySet Name="MarketingCampagnes" EntityType="Self.MarketingCampagne" />
+          <EntitySet Name="MarketingClients" EntityType="Self.MarketingClient" />
+          <EntitySet Name="Pays" EntityType="Self.Pay" />
+          <EntitySet Name="Regions" EntityType="Self.Region" />
+          <EntitySet Name="Voyages" EntityType="Self.Voyage" />
+          <EntitySet Name="Voyageurs" EntityType="Self.Voyageur" />
+          <AssociationSet Name="FK_Dossier_CarteBancaire" Association="Self.FK_Dossier_CarteBancaire">
+            <End Role="CarteBancaire" EntitySet="CarteBancaires" />
+            <End Role="Dossier" EntitySet="Dossiers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dossier_Client" Association="Self.FK_Dossier_Client">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="Dossier" EntitySet="Dossiers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MarketingClient_Client" Association="Self.FK_MarketingClient_Client">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="MarketingClient" EntitySet="MarketingClients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pays_Continent" Association="Self.FK_Pays_Continent">
+            <End Role="Continent" EntitySet="Continents" />
+            <End Role="Pays" EntitySet="Pays" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dossier_Voyage" Association="Self.FK_Dossier_Voyage">
+            <End Role="Voyage" EntitySet="Voyages" />
+            <End Role="Dossier" EntitySet="Dossiers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Voyageur_Dossier" Association="Self.FK_Voyageur_Dossier">
+            <End Role="Dossier" EntitySet="Dossiers" />
+            <End Role="Voyageur" EntitySet="Voyageurs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MarketingClient_MarketingCampagne" Association="Self.FK_MarketingClient_MarketingCampagne">
+            <End Role="MarketingCampagne" EntitySet="MarketingCampagnes" />
+            <End Role="MarketingClient" EntitySet="MarketingClients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Region_Pays" Association="Self.FK_Region_Pays">
+            <End Role="Pays" EntitySet="Pays" />
+            <End Role="Region" EntitySet="Regions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Voyage_Region" Association="Self.FK_Voyage_Region">
+            <End Role="Region" EntitySet="Regions" />
+            <End Role="Voyage" EntitySet="Voyages" />
+          </AssociationSet>
+          <FunctionImport Name="EnregistreCB" ReturnType="Collection(Int32)">
+            <Parameter Name="Nom" Mode="In" Type="String" />
+            <Parameter Name="NumCb" Mode="In" Type="String" />
+            <Parameter Name="DateExp" Mode="In" Type="DateTime" />
+            <Parameter Name="CCV" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="EnregistreClient" ReturnType="Collection(Int32)">
+            <Parameter Name="Civilite" Mode="In" Type="String" />
+            <Parameter Name="NomClient" Mode="In" Type="String" />
+            <Parameter Name="PrenomClient" Mode="In" Type="String" />
+            <Parameter Name="DateClient" Mode="In" Type="DateTime" />
+            <Parameter Name="EmailClient" Mode="In" Type="String" />
+            <Parameter Name="Adresse" Mode="In" Type="String" />
+            <Parameter Name="CodePostale" Mode="In" Type="Int64" />
+            <Parameter Name="Ville" Mode="In" Type="String" />
+            <Parameter Name="Telephone" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="EnregistreDossier" ReturnType="Collection(Int32)">
+            <Parameter Name="NumDossier" Mode="In" Type="String" />
+            <Parameter Name="IdV" Mode="In" Type="Int64" />
+            <Parameter Name="NbVoy" Mode="In" Type="Int32" />
+            <Parameter Name="NumCb" Mode="In" Type="String" />
+            <Parameter Name="AssuranceA" Mode="In" Type="Boolean" />
+            <Parameter Name="AssuranceOption" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="GetListeContinent" ReturnType="Collection(BVModel.GetListeContinent_Result)" />
+          <FunctionImport Name="GetListePays" ReturnType="Collection(BVModel.GetListePays_Result)">
+            <Parameter Name="choixC" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetListeRegion" ReturnType="Collection(BVModel.GetListeRegion_Result)">
+            <Parameter Name="choixP" Mode="In" Type="Int32" />
+            <Parameter Name="choixC" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetListeVoyage" ReturnType="Collection(BVModel.GetListeVoyage_Result)">
+            <Parameter Name="choixC" Mode="In" Type="Int32" />
+            <Parameter Name="choixP" Mode="In" Type="Int32" />
+            <Parameter Name="choixR" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="GetListeContinent_Result">
+          <Property Type="Int64" Name="IdC" Nullable="false" />
+          <Property Type="String" Name="NomC" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetListePays_Result">
+          <Property Type="Int64" Name="IdP" Nullable="false" />
+          <Property Type="String" Name="NomP" Nullable="false" MaxLength="50" />
+          <Property Type="Int64" Name="IdContinent" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GetListeRegion_Result">
+          <Property Type="Int64" Name="IdR" Nullable="false" />
+          <Property Type="String" Name="NomR" Nullable="false" MaxLength="50" />
+          <Property Type="Int64" Name="IdPays" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GetListeVoyage_Result">
+          <Property Type="Int64" Name="IdV" Nullable="false" />
+          <Property Type="String" Name="NomV" Nullable="false" MaxLength="50" />
+          <Property Type="Int64" Name="IdRegion" Nullable="false" />
+          <Property Type="String" Name="TypeV" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DescriptionV" Nullable="true" />
+          <Property Type="Double" Name="Prix" Nullable="true" />
+          <Property Type="DateTime" Name="DateA" Nullable="true" />
+          <Property Type="DateTime" Name="DateR" Nullable="true" />
+          <Property Type="Int64" Name="Dispo" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BVModelStoreContainer" CdmEntityContainer="BVContext">
+          <EntitySetMapping Name="CarteBancaires">
+            <EntityTypeMapping TypeName="BVModel.CarteBancaire">
+              <MappingFragment StoreEntitySet="CarteBancaire">
+                <ScalarProperty Name="IdCB" ColumnName="IdCB" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="NumCb" ColumnName="NumCb" />
+                <ScalarProperty Name="DateExp" ColumnName="DateExp" />
+                <ScalarProperty Name="CCV" ColumnName="CCV" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="BVModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="IdCli" ColumnName="IdCli" />
+                <ScalarProperty Name="Civilite" ColumnName="Civilite" />
+                <ScalarProperty Name="NomClient" ColumnName="NomClient" />
+                <ScalarProperty Name="PrenomClient" ColumnName="PrenomClient" />
+                <ScalarProperty Name="DateClient" ColumnName="DateClient" />
+                <ScalarProperty Name="EmailClient" ColumnName="EmailClient" />
+                <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+                <ScalarProperty Name="CodePostale" ColumnName="CodePostale" />
+                <ScalarProperty Name="Ville" ColumnName="Ville" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Continents">
+            <EntityTypeMapping TypeName="BVModel.Continent">
+              <MappingFragment StoreEntitySet="Continent">
+                <ScalarProperty Name="IdC" ColumnName="IdC" />
+                <ScalarProperty Name="NomC" ColumnName="NomC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dossiers">
+            <EntityTypeMapping TypeName="BVModel.Dossier">
+              <MappingFragment StoreEntitySet="Dossier">
+                <ScalarProperty Name="IdD" ColumnName="IdD" />
+                <ScalarProperty Name="NumDossier" ColumnName="NumDossier" />
+                <ScalarProperty Name="IdVoyage" ColumnName="IdVoyage" />
+                <ScalarProperty Name="NbVoy" ColumnName="NbVoy" />
+                <ScalarProperty Name="IdClient" ColumnName="IdClient" />
+                <ScalarProperty Name="IdCb" ColumnName="IdCb" />
+                <ScalarProperty Name="NumCb" ColumnName="NumCb" />
+                <ScalarProperty Name="Montant" ColumnName="Montant" />
+                <ScalarProperty Name="AssuranceA" ColumnName="AssuranceA" />
+                <ScalarProperty Name="AssuranceOption" ColumnName="AssuranceOption" />
+                <ScalarProperty Name="Statut" ColumnName="Statut" />
+                <ScalarProperty Name="Commentaire" ColumnName="Commentaire" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MarketingCampagnes">
+            <EntityTypeMapping TypeName="BVModel.MarketingCampagne">
+              <MappingFragment StoreEntitySet="MarketingCampagne">
+                <ScalarProperty Name="IdMC" ColumnName="IdMC" />
+                <ScalarProperty Name="Libelle" ColumnName="Libelle" />
+                <ScalarProperty Name="DescriptionC" ColumnName="DescriptionC" />
+                <ScalarProperty Name="DateLimiteC" ColumnName="DateLimiteC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MarketingClients">
+            <EntityTypeMapping TypeName="BVModel.MarketingClient">
+              <MappingFragment StoreEntitySet="MarketingClient">
+                <ScalarProperty Name="IdMCli" ColumnName="IdMCli" />
+                <ScalarProperty Name="IdClient" ColumnName="IdClient" />
+                <ScalarProperty Name="IdCampagne" ColumnName="IdCampagne" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pays">
+            <EntityTypeMapping TypeName="BVModel.Pay">
+              <MappingFragment StoreEntitySet="Pays">
+                <ScalarProperty Name="IdP" ColumnName="IdP" />
+                <ScalarProperty Name="NomP" ColumnName="NomP" />
+                <ScalarProperty Name="IdContinent" ColumnName="IdContinent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Regions">
+            <EntityTypeMapping TypeName="BVModel.Region">
+              <MappingFragment StoreEntitySet="Region">
+                <ScalarProperty Name="IdR" ColumnName="IdR" />
+                <ScalarProperty Name="NomR" ColumnName="NomR" />
+                <ScalarProperty Name="IdPays" ColumnName="IdPays" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Voyages">
+            <EntityTypeMapping TypeName="BVModel.Voyage">
+              <MappingFragment StoreEntitySet="Voyage">
+                <ScalarProperty Name="IdV" ColumnName="IdV" />
+                <ScalarProperty Name="NomV" ColumnName="NomV" />
+                <ScalarProperty Name="IdRegion" ColumnName="IdRegion" />
+                <ScalarProperty Name="TypeV" ColumnName="TypeV" />
+                <ScalarProperty Name="DescriptionV" ColumnName="DescriptionV" />
+                <ScalarProperty Name="Prix" ColumnName="Prix" />
+                <ScalarProperty Name="DateA" ColumnName="DateA" />
+                <ScalarProperty Name="DateR" ColumnName="DateR" />
+                <ScalarProperty Name="Dispo" ColumnName="Dispo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Voyageurs">
+            <EntityTypeMapping TypeName="BVModel.Voyageur">
+              <MappingFragment StoreEntitySet="Voyageur">
+                <ScalarProperty Name="IdVoy" ColumnName="IdVoy" />
+                <ScalarProperty Name="Civilite" ColumnName="Civilite" />
+                <ScalarProperty Name="NomVoy" ColumnName="NomVoy" />
+                <ScalarProperty Name="PrenomVoy" ColumnName="PrenomVoy" />
+                <ScalarProperty Name="DateVoy" ColumnName="DateVoy" />
+                <ScalarProperty Name="IdDossier" ColumnName="IdDossier" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="EnregistreCB" FunctionName="BVModel.Store.EnregistreCB" />
+          <FunctionImportMapping FunctionImportName="EnregistreClient" FunctionName="BVModel.Store.EnregistreClient" />
+          <FunctionImportMapping FunctionImportName="EnregistreDossier" FunctionName="BVModel.Store.EnregistreDossier" />
+          <FunctionImportMapping FunctionImportName="GetListeContinent" FunctionName="BVModel.Store.GetListeContinent">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BVModel.GetListeContinent_Result">
+                <ScalarProperty Name="IdC" ColumnName="IdC" />
+                <ScalarProperty Name="NomC" ColumnName="NomC" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetListePays" FunctionName="BVModel.Store.GetListePays">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BVModel.GetListePays_Result">
+                <ScalarProperty Name="IdP" ColumnName="IdP" />
+                <ScalarProperty Name="NomP" ColumnName="NomP" />
+                <ScalarProperty Name="IdContinent" ColumnName="IdContinent" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetListeRegion" FunctionName="BVModel.Store.GetListeRegion">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BVModel.GetListeRegion_Result">
+                <ScalarProperty Name="IdR" ColumnName="IdR" />
+                <ScalarProperty Name="NomR" ColumnName="NomR" />
+                <ScalarProperty Name="IdPays" ColumnName="IdPays" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetListeVoyage" FunctionName="BVModel.Store.GetListeVoyage">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BVModel.GetListeVoyage_Result">
+                <ScalarProperty Name="IdV" ColumnName="IdV" />
+                <ScalarProperty Name="NomV" ColumnName="NomV" />
+                <ScalarProperty Name="IdRegion" ColumnName="IdRegion" />
+                <ScalarProperty Name="TypeV" ColumnName="TypeV" />
+                <ScalarProperty Name="DescriptionV" ColumnName="DescriptionV" />
+                <ScalarProperty Name="Prix" ColumnName="Prix" />
+                <ScalarProperty Name="DateA" ColumnName="DateA" />
+                <ScalarProperty Name="DateR" ColumnName="DateR" />
+                <ScalarProperty Name="Dispo" ColumnName="Dispo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
